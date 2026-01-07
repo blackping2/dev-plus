@@ -47,13 +47,18 @@
 }
 
 .visualCard {
-  width: 460px;                  /* 정사각형 느낌 제거 */
-  height: 300px;
+  width: 660px;
+  height: 500px;
   border-radius: 26px;
-  background: rgba(25, 25, 60, 0.35);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+  background-image: url("/src/assets/icons/Notebook.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
   transform: rotate(-12deg);
 }
+
 
 /* ====== Login Form ====== */
 .loginForm {
