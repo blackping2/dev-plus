@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SocialIcons from "./SocialIcons";
+import { Link } from "react-router-dom";
 
 export default function LoginForm() {
   // 1️⃣ 상태 선언
@@ -57,7 +58,10 @@ export default function LoginForm() {
       )}
 
       <div className="registerRow">
-        Don&apos;t have an account? <span className="registerLink">Register</span>
+        Don&apos;t have an account?{" "}
+        <Link to="/register" className="registerLink">
+          Register
+        </Link>
       </div>
 
       <SocialIcons />
