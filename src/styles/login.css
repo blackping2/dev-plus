@@ -1,41 +1,46 @@
 /* 전체 배경 + 중앙 정렬 */
 .authPage {
   min-height: 100vh;
-  max-width: 100vw;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;              
   background: #eef0ff;
 }
 
 /* 전체 카드(좌/우 2분할) - Figma 비율 맞춤 */
 .authShell {
-  width: min(1100px, 92vw);
-  height: 600px;                 /* vh 제거 */
-  border-radius: 18px;
-  overflow: hidden;
+  width: min(1200px, 100%);
+  min-height: 680px;          /* ✅ 폼이 안 잘리게 충분히 */
+  height: auto;               /* ✅ 고정 height 있으면 제거 */
   display: grid;
-  grid-template-columns: 45% 55%; /* 핵심 */
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  grid-template-columns: 50% 50%;
+  border-radius: 26px;
+  overflow: hidden;           /* ✅ 내부 장식 잘라내려면 유지 (필요) */
+  background: #eef0ff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
 }
 
 /* 왼쪽 폼 영역 (중앙 X -> 위쪽 정렬) */
 .authLeft {
-  background: #eef0ff;
   display: flex;
   justify-content: center;
-  align-items: flex-start;       /* 중요 */
-  padding: 80px 32px 32px;       /* 위 여백 */
+  align-items: flex-start;
+  padding: 70px 40px 40px;      /* 위 여백 */
 }
 
 .authLeftInner {
-  width: 360px;                  /* 입력창/폼 폭 조정 */
+  width: 430px;
+  max-height: calc(680px - 110px); /* 카드 최소높이 기준 */
+  overflow: auto;                  /* ✅ 폼이 길면 여기만 스크롤 */
+  padding-right: 6px;                 /* 입력창/폼 폭 조정 */
 }
 
 /* 오른쪽 비주얼 영역(이미지 없이) */
 .authRight {
-  background: #aeb6ff;
   position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #b5baff 0%, #aeb6ff 100%);
 }
 
 /* 오른쪽 목업 중앙 배치 */
@@ -145,18 +150,107 @@
   font-weight: 800;
 }
 
+/* Register variation: 좌우 반전 + 장식 추가 */
+.authShell--register {
+  grid-template-columns: 55% 45%;
+}
+
+.authRight--register {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #b5baff 0%, #aeb6ff 100%);
+  display: grid;          /* ✅ 중앙정렬용 */
+  place-items: center;    /* ✅ 중앙정렬용 */
+}
+
+/* 🔥 모니터 SVG 핵심 위치 */
+.registerMonitor {
+  position: relative;  /* ✅ absolute 제거 */
+  left: auto;
+  bottom: auto;
+  width: 520px;        /* 원하는 크기 */
+  height: auto;
+  z-index: 1;
+}
+
 /* 모바일에서 오른쪽 숨김 */
 @media (max-width: 900px) {
   .authShell {
-    grid-template-columns: 1fr;
-    height: auto;
+    grid-template-columns: 55% 45%;
   }
 
   .authRight {
-    display: none;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #b5baff 0%, #aeb6ff 100%);
   }
 
   .authLeft {
     padding: 56px 22px 28px;
   }
+
+/* 왼쪽 큰 곡선/블랍 장식 (허전함 해결 핵심) */
+.registerDecor {
+  position: absolute;
+  inset: -120px -180px auto auto;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  filter: blur(0px);
+}
+
+.authRight--register::before {
+  content: "";
+  position: absolute;
+  left: -180px;
+  top: -140px;
+  width: 520px;
+  height: 820px;
+  border-radius: 300px;
+  background: rgba(255, 255, 255, 0.18);
+  transform: rotate(12deg);
+}
+
+.authRight--register::after {
+  content: "";
+  position: absolute;
+  right: -180px;
+  bottom: -220px;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: rgba(78, 90, 255, 0.18);
+}
+
+/* 일러스트 자리(나중에 이미지 넣을 예정이면 이 div를 img로 교체) */
+.registerIllust {
+  position: absolute;
+  left: 70px;
+  bottom: 40px;
+  width: 520px;
+  height: 520px;
+  border-radius: 24px;
+  background: rgba(17, 24, 39, 0.08);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.18);
+}
+
+/* 오른쪽 폼 영역은 살짝 더 여유 */
+.authLeft--register {
+  background: #eef0ff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 70px 32px 32px;
+}
+
+.authLeftInner--register {
+  max-height: calc(680px - 120px);
+  overflow: auto
+}
+
+/* 제목/간격 조금 더 시안처럼 */
+.authLeftInner--register .loginTitle {
+  font-size: 20px;
+}
 }
