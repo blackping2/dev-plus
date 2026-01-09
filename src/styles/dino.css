@@ -1,0 +1,181 @@
+:root {
+  --bg: #eef0ff;
+  --text: #111827;
+  --stroke: rgba(17, 24, 39, 0.10);
+  --card: rgba(255,255,255,0.55);
+  --primary: #6b7cff;
+}
+
+body { margin: 0; }
+
+.dinoPage {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.dinoShell {
+  width: min(1200px, 100%);
+  border-radius: 26px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.35));
+  border: 1px solid var(--stroke);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  padding: 26px;
+  position: relative;
+}
+
+.dinoTitle {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 900;
+  color: var(--text);
+  text-align: center;
+}
+
+.dinoSub {
+  margin: 10px 0 18px;
+  text-align: center;
+  color: rgba(17,24,39,0.65);
+  font-weight: 700;
+}
+
+.homeBtns {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.primaryBtn, .ghostBtn {
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.primaryBtn {
+  border: none;
+  background: var(--primary);
+  color: white;
+}
+
+.ghostBtn {
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,0.75);
+  color: var(--text);
+}
+
+.gameTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.row { display: flex; gap: 10px; }
+
+.label {
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: 900;
+  color: rgba(17,24,39,0.65);
+}
+
+.value {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--text);
+}
+
+/* 게임 스테이지 */
+.stage {
+  position: relative;
+  height: 360px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid var(--stroke);
+  overflow: hidden;
+}
+
+.ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 36px;
+  height: 3px;
+  background: rgba(17,24,39,0.25);
+}
+
+/* 공룡/장애물은 바닥 라인 위에 */
+.dino {
+  position: absolute;
+  left: 80px;
+  bottom: 36px;
+  width: 56px;
+  height: 60px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.obstacle {
+  position: absolute;
+  bottom: 36px;
+  width: 36px;
+  height: 60px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.hintBar {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 800;
+  color: rgba(17,24,39,0.65);
+}
+
+.overText {
+  color: rgba(255, 60, 60, 0.85);
+}
+
+/* 오버레이 */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(17,24,39,0.25);
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.modal {
+  width: min(420px, 92%);
+  border-radius: 22px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--stroke);
+  padding: 18px;
+  text-align: center;
+  pointer-events: auto;
+}
+
+.dino.walk {
+  animation: dinoWalk 0.4s steps(1) infinite;
+}
+
+.dino.jump {
+  background-image: url("../assets/dino/trex_game_jump.png");
+}
+
+.dino.hit {
+  background-image: url("../assets/dino/trex_game_hit.png");
+}
+
+@keyframes dinoWalk {
+  0%   { background-image: url("../assets/dino/trex_game_walk1.png"); }
+  50%  { background-image: url("../assets/dino/trex_game_walk2.png"); }
+  100% { background-image: url("../assets/dino/trex_game_walk1.png"); }
+}
