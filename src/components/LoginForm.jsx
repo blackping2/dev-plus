@@ -1,12 +1,13 @@
 import { useState } from "react";
 import SocialIcons from "./SocialIcons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
   // 1️⃣ 상태 선언
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   // 2️⃣ 로그인 버튼 클릭 시 실행
   function handleLogin(e) {
@@ -14,6 +15,7 @@ export default function LoginForm() {
 
     if (username === "test" && password === "1234") {
       setMessage("✅ Login Success");
+      navigate("/home");
     } else {
       setMessage("❌ Login Failed");
     }
